@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amplitudo Email Signature Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <img src="https://gaming.amplitudo.me/images/brand.svg" alt="Amplitudo Logo" class="header-logo">
+        <h1>Amplitudo Email Generator</h1>
+    </header>
+
+    <div class="container">
+        <p>Fill in your details below to generate your standard company email signature.</p>
+
+        <div class="form-section">
+            <h3>Your Details</h3>
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="jobTitle">Job Title:</label>
+                <input type="text" id="jobTitle" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" required>
+            </div>
+        </div>
+
+        <!-- Removed Photo Upload Section -->
+
+        <button id="generateBtn">Generate Signature</button>
+
+        <div id="outputContainer" style="display: none;">
+            <h2>Your Generated Signature</h2>
+            <p>
+                Use the button below to copy the signature directly. If that doesn't work in your email client, try selecting the preview manually (Ctrl+C) or use the 'Copy HTML Code' button.
+            </p>
+            <div id="signaturePreviewWrapper">
+                <div id="signaturePreview" class="signature-box">
+                    <!-- Signature will appear here -->
+                </div>
+            </div>
+            <button id="copySignatureBtn" class="copy-button">Copy Signature</button>
+
+            <h3 style="margin-top: 25px;">HTML Code (Advanced/Fallback)</h3>
+            <p>If copying the signature directly doesn't work, or your client needs raw HTML:</p>
+            <textarea id="signatureHtml" rows="10" readonly></textarea>
+            <button id="copyHtmlBtn" class="copy-button copy-html-button">Copy HTML Code</button>
+            <span id="copyStatus" style="margin-left: 10px; font-style: italic;"></span>
+        </div>
+    </div>
+
+    <!-- Removed Canvas element -->
+
+    <script src="script.js"></script>
+</body>
+</html>
