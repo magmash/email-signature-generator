@@ -1,164 +1,361 @@
+/* --- Base Styles & Variables --- */
+:root {
+    --font-family-sans: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --primary-color: #00A99D;
+    --accent-color: #00B9AD;
+    --primary-text-color: #211F54;
+    --secondary-color: #4A5568;
+    --light-gray: #F9FAFB;
+    --medium-gray: #E5E7EB;
+    --dark-gray: #9CA3AF;
+    --border-radius: 8px;
+    --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --input-border-color: #D1D5DB;
+    --input-focus-border-color: var(--accent-color);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-family-sans);
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-/* Header Styles */
-.app-header {
-    background-color: #ffffff;
-    padding: 15px 30px;
+    background-color: var(--light-gray);
+    color: var(--secondary-color);
     display: flex;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 20px;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.header-logo {
-    height: 40px;
-    width: auto;
-    margin-right: 15px;
-}
-
-.app-header h1 {
-    margin: 0;
-    font-size: 1.5em;
-    color: #333;
-}
-
-/* Container and Form Styles */
+/* --- Main Content Area --- */
 .container {
-    max-width: 700px; /* Adjusted width */
-    margin: 20px auto;
-    padding: 20px 30px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 760px;
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+    flex-grow: 1;
+    width: 100%;
 }
 
-.form-section {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
-}
-.form-section:last-of-type{
-    border-bottom: none; /* No border after the last section */
+/* --- Page Title Area Styles --- */
+.page-title-area {
+    margin-bottom: 2.5rem;
 }
 
+.page-logo {
+    height: 35px;
+    width: auto;
+    display: block;
+    margin-bottom: 1.5rem;
+}
 
-h2, h3 {
-    color: #0056b3;
+.page-text-block {
+    /* No specific styles needed */
+}
+
+.page-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #1F2937;
+    /* *** REDUCED MARGIN BOTTOM *** */
+    margin: 0 0 0.25rem 0; /* Smaller bottom margin */
+    text-align: left;
+}
+
+.intro-text {
+    text-align: left;
+    margin-bottom: 0;
+    font-size: 1rem;
+    color: #4B5563;
+}
+/* --- End Page Title Area Styles --- */
+
+
+/* --- Card Styling --- */
+.card {
+    background-color: #ffffff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    padding: 2rem 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.card h2 {
     margin-top: 0;
+    margin-bottom: 1.75rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary-text-color);
+    border-bottom: 1px solid var(--medium-gray);
+    padding-bottom: 1rem;
 }
 
-.form-group {
-    margin-bottom: 15px;
+/* --- Form Styling --- */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem 1.75rem;
+    margin-bottom: 1.75rem;
+}
+.form-group.full-width {
+    grid-column: 1 / -1;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #374151;
 }
 
 .form-group input[type="text"],
 .form-group input[type="email"],
-.form-group input[type="tel"] { /* Removed file input type */
-    width: 95%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    max-width: 450px;
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--input-border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: var(--font-family-sans);
+    color: #111827;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+.form-group input::placeholder {
+    color: #9CA3AF;
+    opacity: 1;
 }
 
-/* Removed Photo Preview Styles */
+.form-group input:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 3px rgba(0, 185, 173, 0.15);
+}
 
-/* Buttons */
-button {
-    display: inline-block;
-    background-color: #0056b3;
-    color: #fff;
-    padding: 10px 20px;
+.form-group small { /* Style for phone format explanation */
+    font-size: 0.8rem;
+    color: #718096;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+
+/* --- Buttons --- */
+/* Button styles remain the same */
+.button-primary, .button-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.75rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 1em;
-    margin-top: 10px; /* Add margin to the main generate button */
-    margin-right: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    gap: 0.5rem;
 }
-button:hover {
-    background-color: #004494;
-}
-
-.copy-button {
-    background-color: #5cb85c;
-    margin-top: 5px;
-}
-.copy-button:hover {
-    background-color: #4cae4c;
-}
-.copy-html-button {
-     background-color: #f0ad4e;
-}
-.copy-html-button:hover {
-     background-color: #ec971f;
+.button-primary:active, .button-secondary:active {
+    transform: scale(0.98);
 }
 
-
-/* Output Area */
-#outputContainer {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 2px solid #0056b3;
+.button-primary {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+.button-primary:hover {
+    background-color: #00a396;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-#signaturePreviewWrapper{
-    margin-bottom: 10px;
+.button-secondary {
+    background-color: #F3F4F6;
+    color: #374151;
+    border: 1px solid #D1D5DB;
+}
+.button-secondary:hover {
+    background-color: #E5E7EB;
+}
+
+.button-secondary.button-alt {
+     background-color: #FFFBEB;
+     color: #D97706;
+     border-color: #FDE68A;
+}
+.button-secondary.button-alt:hover {
+     background-color: #FEF3C7;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.icon {
+    font-style: normal;
+    font-size: 1.1em;
+    line-height: 1;
+}
+
+
+/* --- Output Section --- */
+/* Output styles remain the same */
+.output-section {
+    border-top: 3px solid var(--accent-color);
+}
+
+#signaturePreviewWrapper {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    background-color: var(--light-gray);
 }
 
 .signature-box {
-    border: 1px dashed #ccc;
-    padding: 15px;
-    margin-top: 10px;
-    background-color: #fdfdfd;
-    max-width: 600px;
+    border: 1px dashed var(--dark-gray);
+    padding: 1rem;
+    background-color: #ffffff;
     overflow-x: auto;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    border-radius: 4px;
+    min-height: 50px;
 }
 
-textarea#signatureHtml {
-    width: 95%;
-    margin-top: 5px;
+.copy-status {
+    display: inline-block;
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+.copy-status.success { color: #10B981; }
+.copy-status.error { color: #EF4444; }
+
+.html-code-details {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--medium-gray);
+    padding-top: 1rem;
+}
+.html-code-details summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--secondary-color);
+    padding: 0.5rem 0;
+}
+.html-code-details summary:hover {
+    color: var(--accent-color);
+}
+
+#signatureHtml {
+    width: 100%;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
     font-family: monospace;
-    font-size: 0.9em;
-    background-color: #eee;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    font-size: 0.875rem;
+    background-color: #F9FAFB;
+    border: 1px solid var(--medium-gray);
+    border-radius: 6px;
+    box-sizing: border-box;
     white-space: pre;
     overflow-wrap: break-word;
+    resize: vertical;
 }
 
-/* Signature Styling References (Actual styles are inline in script.js) */
-.signature-box p,
-.signature-box table,
-.signature-box td,
-.signature-box a,
-.signature-box span {
-    font-family: Arial, sans-serif !important;
-    font-size: 10pt !important;
-    color: #333333;
-    margin: 0;
-    padding: 0;
-    line-height: 1.4;
-    vertical-align: top;
-    box-sizing: border-box;
+/* --- Instructions / Accordion Section --- */
+/* Accordion styles remain the same */
+.instructions-section {
+    margin-top: 2.5rem;
 }
 
-.signature-box a {
-    color: #0056b3;
-    text-decoration: none;
+.accordion-item {
+    border: 1px solid var(--medium-gray);
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    background-color: #ffffff;
+    overflow: hidden;
+    transition: margin-bottom 0.3s ease;
+}
+.accordion-item:last-of-type {
+    margin-bottom: 0;
+}
+.accordion-item[open] {
+    margin-bottom: 1.5rem;
+}
+
+.accordion-header {
+    display: block;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    transition: background-color 0.2s ease;
+    position: relative;
+}
+.accordion-header:hover {
+    background-color: #f9fafb;
+}
+
+.accordion-header::after {
+    content: '❯';
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--dark-gray);
+    transition: transform 0.3s ease;
+}
+.accordion-item[open] > .accordion-header::after {
+    transform: translateY(-50%) rotate(90deg);
+}
+.accordion-header::-webkit-details-marker { display: none; }
+.accordion-header { list-style: none; }
+
+.accordion-content {
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    border-top: 1px solid var(--medium-gray);
+    color: #374151;
+}
+.accordion-content ol {
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+.accordion-content li {
+    margin-bottom: 0.75rem;
+}
+.accordion-content strong {
+    font-weight: 600;
+    color: var(--primary-text-color);
+}
+.accordion-content em {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    display: block;
+    margin-top: 0.5rem;
+}
+
+/* --- Footer --- */
+.app-footer {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    color: #6B7280;
+    background-color: #F3F4F6;
+    border-top: 1px solid var(--medium-gray);
 }

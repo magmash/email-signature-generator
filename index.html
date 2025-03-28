@@ -4,67 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amplitudo Email Signature Generator</title>
+    <!-- Link to Google Fonts for Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to our stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="app-header">
-        <img src="https://gaming.amplitudo.me/images/brand.svg" alt="Amplitudo Logo" class="header-logo">
-        <h1>Amplitudo Email Generator</h1>
-    </header>
+    <main class="container">
 
-    <div class="container">
-        <p>Fill in your details below to generate your standard company email signature.</p>
-
-        <div class="form-section">
-            <h3>Your Details</h3>
-            <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" required>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" required>
-            </div>
-            <div class="form-group">
-                <label for="jobTitle">Job Title:</label>
-                <input type="text" id="jobTitle" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" required>
+        <div class="page-title-area">
+            <img src="https://gaming.amplitudo.me/images/brand.svg" alt="Amplitudo Logo" class="page-logo">
+            <div class="page-text-block">
+                <h1 class="page-title">Email signature</h1>
+                <p class="intro-text">Enter your details to generate your standard company email signature.</p>
             </div>
         </div>
 
-        <!-- Removed Photo Upload Section -->
 
-        <button id="generateBtn">Generate Signature</button>
+        <section class="form-section card">
+            <h2>Your Details</h2>
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                 <div class="form-group">
+                    <label for="jobTitle">Job Title:</label>
+                    <input type="text" id="jobTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number (Personal/Direct):</label>
+                    <!-- *** ADDED pattern ATTRIBUTE *** -->
+                    <input type="tel" id="phone" required placeholder="+382 6x xxx xxx" pattern="[\+0-9\s\-()xX]+">
+                    <small>Allows digits, +, -, space, (, ), x.</small> <!-- Optional: Explain allowed chars -->
+                </div>
+            </div>
+             <button id="generateBtn" class="button-primary">
+                 Generate Signature
+            </button>
+        </section>
 
-        <div id="outputContainer" style="display: none;">
+
+        <section id="outputContainer" class="output-section card" style="display: none;">
             <h2>Your Generated Signature</h2>
             <p>
-                Use the button below to copy the signature directly. If that doesn't work in your email client, try selecting the preview manually (Ctrl+C) or use the 'Copy HTML Code' button.
+                Use the 'Copy Signature' button below. If pasting doesn't work well in your email client, try selecting the preview manually (Ctrl+C) or use 'Copy HTML Code' as a fallback.
             </p>
             <div id="signaturePreviewWrapper">
                 <div id="signaturePreview" class="signature-box">
                     <!-- Signature will appear here -->
                 </div>
             </div>
-            <button id="copySignatureBtn" class="copy-button">Copy Signature</button>
+            <div class="button-group">
+                <button id="copySignatureBtn" class="button-secondary">
+                     <span class="icon">📋</span> Copy Signature
+                </button>
+                <!-- *** CORRECTED BUTTON TEXT NODE *** -->
+                <button id="copyHtmlBtn" class="button-secondary button-alt">
+                     <span class="icon"> H T M L </span> Copy HTML Code
+                </button>
+            </div>
+             <span id="copyStatus" class="copy-status"></span>
 
-            <h3 style="margin-top: 25px;">HTML Code (Advanced/Fallback)</h3>
-            <p>If copying the signature directly doesn't work, or your client needs raw HTML:</p>
-            <textarea id="signatureHtml" rows="10" readonly></textarea>
-            <button id="copyHtmlBtn" class="copy-button copy-html-button">Copy HTML Code</button>
-            <span id="copyStatus" style="margin-left: 10px; font-style: italic;"></span>
-        </div>
-    </div>
+            <details class="html-code-details">
+                 <summary>Show/Hide HTML Code</summary>
+                 <textarea id="signatureHtml" rows="10" readonly></textarea>
+            </details>
 
-    <!-- Removed Canvas element -->
+        </section>
+
+        <section id="instructionsContainer" class="instructions-section card" style="display: none;">
+            <h2>How to Update Your Email Signature</h2>
+            <p>After copying your signature using the button above, follow the steps for your email client:</p>
+            <!-- Accordion items remain the same -->
+             <details class="accordion-item">
+                <summary class="accordion-header">Gmail</summary>
+                <div class="accordion-content">
+                    <ol>
+                        <li>Open Gmail in your web browser.</li>
+                        <li>Click the <strong>Settings</strong> gear icon (⚙️) in the top right, then click <strong>"See all settings"</strong>.</li>
+                        <li>Scroll down to the <strong>"Signature"</strong> section.</li>
+                        <li>If you have an existing signature, hover over it and click the <strong>Edit</strong> (pencil) icon, or click <strong>"+ Create new"</strong> to add one.</li>
+                        <li>Give your signature a name (e.g., "Default").</li>
+                        <li>In the signature editing box, <strong>delete any existing content</strong>.</li>
+                        <li><strong>Paste</strong> your copied signature (Ctrl+V or Cmd+V) directly into the box. It should appear with the correct formatting.</li>
+                        <li>Below the editor, ensure your new signature is selected for <strong>"FOR NEW EMAILS USE"</strong> and optionally for <strong>"ON REPLY/FORWARD USE"</strong>.</li>
+                        <li>Scroll to the bottom of the Settings page and click <strong>"Save Changes"</strong>.</li>
+                    </ol>
+                </div>
+            </details>
+             <details class="accordion-item">
+                <summary class="accordion-header">Outlook (Desktop App - Windows/Mac)</summary>
+                 <div class="accordion-content">
+                    <ol>
+                        <li>Open the Outlook desktop application.</li>
+                        <li>Go to <strong>File</strong> > <strong>Options</strong> (Windows) or <strong>Outlook</strong> > <strong>Preferences</strong> (Mac).</li>
+                        <li>Select <strong>Mail</strong> > <strong>Signatures...</strong> (Windows) or <strong>Email</strong> > <strong>Signatures</strong> (Mac).</li>
+                        <li>Select the email account you want to modify (if you have multiple).</li>
+                        <li>Click <strong>"New"</strong> to create a signature or select an existing one to edit.</li>
+                        <li>Give your signature a name.</li>
+                        <li>In the "Edit signature" box, <strong>delete any existing content</strong>.</li>
+                        <li><strong>Paste</strong> your copied signature (Ctrl+V or Cmd+V) into the box.</li>
+                        <li>Use the dropdowns (usually on the right) to choose this signature for <strong>"New messages"</strong> and optionally for <strong>"Replies/forwards"</strong>.</li>
+                        <li>Click <strong>OK</strong> to save and close the signature windows.</li>
+                    </ol>
+                     <p><em>Note: Pasting formatted signatures into Outlook desktop can sometimes be inconsistent. If it doesn't look right, try copying the HTML code and pasting that if Outlook provides an HTML editing option, or simplify the formatting if needed.</em></p>
+                </div>
+            </details>
+             <details class="accordion-item">
+                <summary class="accordion-header">Apple Mail (macOS)</summary>
+                 <div class="accordion-content">
+                    <ol>
+                        <li>Open the Mail application.</li>
+                        <li>Go to <strong>Mail</strong> > <strong>Preferences...</strong> (or <strong>Settings...</strong> in newer macOS versions) from the menu bar.</li>
+                        <li>Click the <strong>Signatures</strong> tab.</li>
+                        <li>Select the email account you want to add the signature to in the left column.</li>
+                        <li>Click the <strong>"+"</strong> button below the middle column to create a new signature.</li>
+                        <li>Give your signature a name (e.g., "Company Standard").</li>
+                        <li>In the right-hand editing pane, <strong>uncheck</strong> the box that says <strong>"Always match my default message font"</strong>. This is important!</li>
+                        <li><strong>Delete</strong> any placeholder text in the editing pane.</li>
+                        <li><strong>Paste</strong> your copied signature (Cmd+V) into the pane. It should appear formatted.</li>
+                        <li>Drag the signature name from the middle column onto the desired email account in the left column if it's not already assigned.</li>
+                        <li>Use the <strong>"Choose Signature"</strong> dropdown at the bottom to select your new signature as the default for that account.</li>
+                        <li>Close the Preferences/Settings window.</li>
+                    </ol>
+                </div>
+            </details>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <p>© Amplitudo</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
